@@ -12,6 +12,6 @@
 		base-package="com.caveofprogramming.spring.web.dao">
 	</context:component-scan>
 	<jee:jndi-lookup jndi-name="jdbc/spring" id="dataSource"
-		expected-type="javax.sql.DataSource">
+		expected-type="javax.sql.DataSource" resource-ref="true">
 	</jee:jndi-lookup>
 </beans>
