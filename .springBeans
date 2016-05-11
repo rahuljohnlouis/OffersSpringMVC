@@ -15,5 +15,18 @@
 	<autoconfigs>
 	</autoconfigs>
 	<configSets>
+		<configSet>
+			<name><![CDATA[SpringConfigSet]]></name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/com/caveofprogramming/spring/web/config/dao-context.xml</config>
+				<config>src/com/caveofprogramming/spring/web/config/security-context.xml</config>
+				<config>src/com/caveofprogramming/spring/web/config/service-context.xml</config>
+				<config>WebContent/WEB-INF/offers-servlet.xml</config>
+			</configs>
+			<profiles>
+			</profiles>
+		</configSet>
 	</configSets>
 </beansProjectDescription>
