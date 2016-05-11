@@ -5,7 +5,7 @@
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
-	<enableImports><![CDATA[false]]></enableImports>
+	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>WebContent/WEB-INF/offers-servlet.xml</config>
 		<config>src/com/caveofprogramming/spring/web/config/dao-context.xml</config>
