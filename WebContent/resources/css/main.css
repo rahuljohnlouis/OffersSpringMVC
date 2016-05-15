@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 .formattable {
-	width: 400px;
+	width: 600px;
 	padding: 10px;
 	border: 1px solid blue;
 }
@@ -30,6 +30,12 @@ textarea {
 	margin-left: 10px;
 }
 
+.valid
+{
+	font-size: small;
+	color: green;
+	margin-left: 10px;
+}
 p.error
 {
 	color:red;
