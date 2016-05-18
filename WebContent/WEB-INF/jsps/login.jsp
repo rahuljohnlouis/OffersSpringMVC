@@ -29,8 +29,8 @@
 				<td colspan='2'><input name="submit" type="submit"
 					value="Login" /></td>
 			</tr>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</table>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 	<p><a href="<c:url value="/newaccount"/>">Create new account</a></p>
 </body>
