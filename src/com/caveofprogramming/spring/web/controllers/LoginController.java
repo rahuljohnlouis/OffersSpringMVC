@@ -30,6 +30,13 @@ public class LoginController {
 		return "login";
 	}
 	
+	@RequestMapping("/denied")
+	public String showDenied() {
+		System.out.println("Inside denied");
+		return "denied";
+	}
+	
+	
 	@RequestMapping("/loggedout")
 	public String showLoggedOUt() {
 		return "loggedout";
@@ -76,8 +83,9 @@ public class LoginController {
 	@RequestMapping("/admin")
 	public String showAdmin(Model model) {
 		
-		List<User> users = usersService.getAllUsers();
-		model.addAttribute("users",users);
+			List<User> users = usersService.getAllUsers();
+			model.addAttribute("users",users);
+		
 		return "admin";
 	}
 }

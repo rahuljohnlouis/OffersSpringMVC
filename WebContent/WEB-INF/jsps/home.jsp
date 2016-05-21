@@ -21,6 +21,11 @@
 			New Offer</a>
 
 	</p>
+	<sec:authorize access="!isAuthenticated()">
+	<p> 
+	<a href='<c:url value='/login'/>'>Log In</a>
+	</p>
+	</sec:authorize>
 	<sec:authorize access="isAuthenticated()"><p>
 		<c:url var="logoutUrl" value="/logout" />
 	<form action="${logoutUrl}" id="logout" method="post">
@@ -29,12 +34,12 @@
 	</form>
 	<a href="#" onclick="document.getElementById('logout').submit();">Logout</a></sec:authorize>
 	
-	<sec:authorize access="hasRole('admin')">
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 	<p> 
-	<a href='<c:url value='/admin'/>'></a>
+	<a href='<c:url value='/admin'/>'>Admin</a>
 	</p>
-	
 	</sec:authorize>
+	
 </body>
 
 </html>
