@@ -38,11 +38,12 @@ public class UsersDao {
 		params.addValue("username", user.getUsername());
 		params.addValue("password", passwordEncoder.encode(user.getPassword()));
 		params.addValue("email", user.getEmail());
+		params.addValue("name", user.getName());
 		params.addValue("enabled", user.isEnabled());
 		params.addValue("authority", user.getAuthority());
 		
-		jdbc.update("insert into users (username,password,enabled,email) values(:username,:password,:enabled, :email)", params);
-		return jdbc.update("insert into authorities (username, authority)values(:username,:authority)", params) == 1;
+		return jdbc.update("insert into users (username, name, password, email, enabled, authority) values(:username, :name, :password, :email, :enabled, :authority)", params) == 1;
+		
 	}
 
 	public boolean exists(String username) {
@@ -51,21 +52,8 @@ public class UsersDao {
 	}
 
 	public List<User> getAllUsers() {
-		jdbc.query("select * from offers", new RowMapper<Offer>() {
-
-			public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-				// Map jdbc result set to a single offer object
-				Offer offer = new Offer();
-				offer.setId(rs.getInt("id")); // id is column name
-				offer.setName(rs.getString("name"));
-				offer.setText(rs.getString("text"));
-				offer.setEmail(rs.getString("email"));
-				return offer;
-			}
-
-		});
-		return jdbc.query("select * from users, authorities where users.username=authorities.username", BeanPropertyRowMapper.newInstance(User.class));
+		
+		return jdbc.query("select * from users", BeanPropertyRowMapper.newInstance(User.class));
 		
 	}
 
