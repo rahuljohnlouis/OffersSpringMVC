@@ -12,11 +12,13 @@
 
 
 <sec:authorize access="isAuthenticated()">
-	<p class="login">
+		<a href="#" onclick="document.getElementById('logout').submit();">Logot</a>
+		
 		<c:url var="logoutUrl" value="/logout" />
 	<form action="${logoutUrl}" id="logout" method="post">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 	</form>
 	<a href="#" onclick="document.getElementById('logout').submit();">Logout</a>
+	
 </sec:authorize>

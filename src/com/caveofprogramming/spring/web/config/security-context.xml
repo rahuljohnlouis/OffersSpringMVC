@@ -9,8 +9,8 @@
 		<!-- Connecting to database using dataSource bean created in dao-context.xml -->
 		<security:authentication-provider>
 			<security:jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select * from users where binary username = ?"
-				authorities-by-username-query="select * from authorities where binary username=?"
+				users-by-username-query="select username,password, enabled from users where binary username = ?"
+				authorities-by-username-query="select username,authority from users where binary username=?"
 				id="jdbcUserService" />
 			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
 		</security:authentication-provider>
@@ -20,6 +20,7 @@
 		<!-- <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" /> -->
 		<security:intercept-url pattern="/createoffer" access="isAuthenticated()" />
 		<security:intercept-url pattern="/docreate" access="isAuthenticated()" />
+		<security:intercept-url pattern="/offerdeleted" access="isAuthenticated()" />
 		<security:intercept-url pattern="/offercreated" access="isAuthenticated()" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/denied" access="permitAll" />

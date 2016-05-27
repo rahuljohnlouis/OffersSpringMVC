@@ -39,6 +39,7 @@ public class LoginController {
 	
 	@RequestMapping("/loggedout")
 	public String showLoggedOUt() {
+		System.out.println("Inside logged out");
 		return "loggedout";
 	}
 	
