@@ -50,7 +50,7 @@ public class UsersDao {
 
 	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
-		return session().createQuery("from User").list();
+		return session().createQuery("from Userr").list();
 		
 	}
 
