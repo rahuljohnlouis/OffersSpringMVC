@@ -15,25 +15,25 @@ import com.caveofprogramming.spring.web.validation.ValidEmail;
 @Table(name="users")
 public class User {
 
-	@NotBlank
-	@Size(min=8,max=15)
-	@Pattern(regexp="^\\w{8,}$")
+	@NotBlank(groups={PersistanceValidationGroup.class,FormValidationGroup.class})
+	@Size(min=8,max=15, groups={PersistanceValidationGroup.class,FormValidationGroup.class})
+	@Pattern(regexp="^\\w{8,}$",groups={PersistanceValidationGroup.class,FormValidationGroup.class})
 	@Id
 	@Column(name="username")
 	private String username;
 	
-	@NotBlank
-	@Pattern(regexp="^\\S+$")
-	@Size(min=8,max=15)
+	@NotBlank(groups={PersistanceValidationGroup.class,FormValidationGroup.class})
+	@Pattern(regexp="^\\S+$",groups={PersistanceValidationGroup.class,FormValidationGroup.class})
+	@Size(min=8,max=15, groups={FormValidationGroup.class})
 	private String password;
 	
-	@ValidEmail(message="This does not appear to be a valid email address")
+	@ValidEmail(message="This does not appear to be a valid email address", groups={PersistanceValidationGroup.class,FormValidationGroup.class})
 	private String email;
 	private boolean enabled=false;
 	private String authority;
 	
-	@NotBlank
-	@Size(min=8,max=60)
+	@NotBlank(groups={PersistanceValidationGroup.class,FormValidationGroup.class})
+	@Size(min=8,max=60, groups={PersistanceValidationGroup.class,FormValidationGroup.class})
 	private String name;
 	public User() {
 		
