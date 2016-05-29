@@ -38,17 +38,8 @@ public class UsersDao {
 	}
 
 	@Transactional
-	public boolean create(User user) {
-		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("username", user.getUsername());
-		params.addValue("password", passwordEncoder.encode(user.getPassword()));
-		params.addValue("email", user.getEmail());
-		params.addValue("name", user.getName());
-		params.addValue("enabled", user.isEnabled());
-		params.addValue("authority", user.getAuthority());
-		
-		return jdbc.update("insert into users (username, name, password, email, enabled, authority) values(:username, :name, :password, :email, :enabled, :authority)", params) == 1;
-		
+	public void create(User user) {
+		session().save(user);
 	}
 
 	public boolean exists(String username) {
@@ -58,7 +49,6 @@ public class UsersDao {
 
 	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
-		//return jdbc.query("select * from users", BeanPropertyRowMapper.newInstance(User.class));
 		return session().createQuery("from User").list();
 		
 	}
