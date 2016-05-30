@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -14,10 +16,22 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 @Repository
+@Transactional
 @Component("offersDao")
+
 public class OffersDao {
 
 	private NamedParameterJdbcTemplate jdbc;
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public Session session()
+	{
+		return sessionFactory.getCurrentSession();
+	}
+	
+	
 	public OffersDao()
 	{
 	}
@@ -34,9 +48,8 @@ public class OffersDao {
 		return jdbc.update("update offers set text=:text where id=:id", params) == 1;
 	}
 
-	public boolean create(Offer offer) {
-		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
-		return jdbc.update("insert into offers (username, text)values(:username,:text)", params) == 1;
+	public void create(Offer offer) {
+		session().save(offer);
 	}
 
 	public boolean delete(int id) {
