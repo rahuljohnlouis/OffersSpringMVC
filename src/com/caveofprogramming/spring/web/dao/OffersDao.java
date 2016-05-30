@@ -2,16 +2,12 @@ package com.caveofprogramming.spring.web.dao;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Component("offersDao")
 
 public class OffersDao {
-
-	private NamedParameterJdbcTemplate jdbc;
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -62,15 +56,13 @@ public class OffersDao {
 	}
 
 	public Offer getOffer(int id) {
-		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("id", id);
-		return jdbc.queryForObject(
-				"select * from offers, users where offers.username=users.username and users.enabled=true and id=:id",
-				params, new OfferRowMapper());
+		
+		Criteria crit = session().createCriteria(Offer.class);
+		crit.createAlias("user", "u");
+		crit.add(Restrictions.eq("u.enabled", true));
+		crit.add(Restrictions.idEq(id));
+		return (Offer) crit.uniqueResult();
+	
 	}
 
-	@Autowired
-	public void setDataSource(DataSource jdbc) {
-		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
-	}
 }
