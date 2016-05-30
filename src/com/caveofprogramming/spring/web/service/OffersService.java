@@ -26,7 +26,7 @@ public class OffersService {
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	
 	public void create(Offer offer) {
-		offersDao.create(offer);
+		offersDao.saveOrUpdate(offer);
 	}
 	
 	
@@ -63,16 +63,7 @@ public class OffersService {
 		return offers.get(0);
 	}
 	public void saveOrUpdate(Offer offer) {
-		if(offer.getId()!=0)
-		{
-			System.out.println(offer.getId());
-			System.out.println("when offer id is not zero");
-			offersDao.update(offer);
-		}
-		else {
-			System.out.println("When offer ID is zero");
-			offersDao.create(offer);
-		}
+			offersDao.saveOrUpdate(offer);
 	}
 	public void delete(int id) {
 		offersDao.delete(id);
