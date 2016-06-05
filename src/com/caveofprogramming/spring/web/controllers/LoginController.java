@@ -2,8 +2,6 @@ package com.caveofprogramming.spring.web.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.caveofprogramming.spring.web.dao.FormValidationGroup;
-import com.caveofprogramming.spring.web.dao.PersistanceValidationGroup;
 import com.caveofprogramming.spring.web.dao.User;
 import com.caveofprogramming.spring.web.service.UsersService;
 
