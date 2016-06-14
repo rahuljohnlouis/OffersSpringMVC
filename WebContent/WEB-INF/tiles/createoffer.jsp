@@ -36,7 +36,7 @@ $(document).ready(onReady);
 		</tr>
 		<tr>
 			<td class="label"></td>
-			<td><input class="control" value="Save advert" type="submit" /></td>
+			<td><input class="control" value="Save Offer" type="submit" /></td>
 		</tr>
 		
 		<c:if test="${offer.id != 0}">

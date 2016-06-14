@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 public class Offer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Size(min = 5, max = 100, groups={PersistanceValidationGroup.class,FormValidationGroup.class})

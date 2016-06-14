@@ -51,7 +51,7 @@
 
 		<tr>
 			<td class="label"></td>
-			<td><input class="control" value="Create advert" type="submit" /></td>
+			<td><input class="control" value="Send Message" type="submit" /></td>
 		</tr>
 	</table>
 </sf:form>
