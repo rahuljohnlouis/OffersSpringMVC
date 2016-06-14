@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Component("usersDao")	
 public class UsersDao {
+	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -38,15 +39,19 @@ public class UsersDao {
 	}
 
 	public boolean exists(String username) {
-		Criteria crit = session().createCriteria(User.class);
-		crit.add(Restrictions.idEq(username));
-		User user = (User)crit.uniqueResult();
-		return user!= null;
+		return getUser(username) != null;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
 		return session().createQuery("from User").list();
+	}
+
+	public User getUser(String username) {
+		Criteria crit = session().createCriteria(User.class);
+		crit.add(Restrictions.idEq(username));
+		return (User)crit.uniqueResult();
+		
 	}
 
 }

@@ -7,30 +7,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import com.caveofprogramming.spring.web.validation.ValidEmail;
 
 @Entity
 @Table(name="messages")
 public class Message implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Size(min=5,max=100)
 	private String subject;
+	@Size(min=5,max=100)
 	private String content;
 	//Name of user sending message
+
+	@Size(min=8,max=60)
 	private String name;
 	//Sender's email address
+	@ValidEmail
 	private String email;
 	//Send message to this user
 	private String username;
 	
 	public Message()
 	{
-		
+		this.toString();
 	}
 
 	public Message(int id, String subject, String content, String name, String email, String username) {

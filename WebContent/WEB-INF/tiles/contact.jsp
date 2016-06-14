@@ -10,13 +10,11 @@
 	<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
 	<input type="hidden" name="_eventId" value="send"/>
 	
-	<input type="hidden" name="username" value="rahuljohnlouis"/>
-	
 	<table class="formattable">
 
 		<tr>
 			<td class="label">Your name:</td>
-			<td><sf:input class="control" path="name" type="text" /><br />
+			<td><sf:input class="control" path="name" type="text" value="${fromName}"/><br />
 				<div class="error">
 					<sf:errors path="name"></sf:errors>
 				</div></td>
@@ -25,7 +23,7 @@
 		
 		<tr>
 			<td class="label">Your email:</td>
-			<td><sf:input class="control" path="email" type="text" /><br />
+			<td><sf:input class="control" path="email" type="text" value="${fromEmail}"/><br />
 				<div class="error">
 					<sf:errors path="email"></sf:errors>
 				</div></td>
