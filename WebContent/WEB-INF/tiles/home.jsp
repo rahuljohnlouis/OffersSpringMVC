@@ -5,6 +5,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
+
 <table class="offers">
 	
 	<c:forEach var="offer" items="${offers}">
@@ -16,29 +17,20 @@
 	</c:forEach>
 </table>
 <p/>
-<c:choose>
-	<c:when test="${hasOffer}">
-		<a href="${pageContext.request.contextPath}/createoffer">Edit or
-			Delete current offer.</a>
-	</c:when>
-	<c:otherwise>
-		<a href="${pageContext.request.contextPath}/createoffer">Create
-			New Offer</a>
-	</c:otherwise>
 
-</c:choose>
-<p>
-	<a href="${pageContext.request.contextPath}/offers">Show
-		CurrentOffers</a>
-</p>
-<p>
-	<a href="${pageContext.request.contextPath}/createoffer">Create New
-		Offer</a>
 
-</p>
+<script type="text/javascript">
+function updateMessageLink(data)
+{
+	$("#numberMessages").text(data.number);
+}
+function onLoad() {
+	updatePage();
+	window.setInterval(updatePage,5000);
+}
 
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-	<p>
-		<a href='<c:url value='/admin'/>'>Admin</a>
-	</p>
-</sec:authorize>
+function updatePage() {
+	$.getJSON("<c:url value="/getmessages"/>",updateMessageLink);
+}
+$(document).ready(onLoad);
+</script>

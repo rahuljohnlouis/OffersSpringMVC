@@ -21,6 +21,9 @@
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
 </div>
 
+<tiles:insertAttribute name="toolbar"></tiles:insertAttribute>
+
+
 <div class="content">
 <tiles:insertAttribute name="content"></tiles:insertAttribute>
 </div>
