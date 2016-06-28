@@ -11,9 +11,16 @@
 </div>
 
 <script type="text/javascript">
+var timer;
 function showReply(i)
-{
+{	
+	stopTimer();
 	$("#form" +i).toggle();
+}
+
+function sendMessage(i)
+{
+	alert($("#textbox"+i).val());
 }
 function showMessages(data)
 {
@@ -50,11 +57,19 @@ function showMessages(data)
 		
 		var textarea=document.createElement("textarea");
 		textarea.setAttribute("class","replyarea");
+		textarea.setAttribute("id","textbox"+i);
 		
 		var replyButton = document.createElement("input");
 		replyButton.setAttribute("class","replybutton");
 		replyButton.setAttribute("type","button");
 		replyButton.setAttribute("value","Reply");
+		replyButton.onclick= function(j) {
+			return function()
+			{
+				sendMessage(j);
+			}
+			
+		}(i);
 		
 		replyForm.appendChild(textarea);	
 		replyForm.appendChild(replyButton);
@@ -71,8 +86,19 @@ function showMessages(data)
 }
 function onLoad() {
 	updatePage();
-	window.setInterval(updatePage,5000);
+	startTimer();
 }
+
+function startTimer()
+{
+	timer = window.setInterval(updatePage,5000);
+}
+
+function stopTimer() {
+	window.clearInterval(timer);
+	
+}
+
 
 function updatePage() {
 	$.getJSON("<c:url value="/getmessages"/>",showMessages);
