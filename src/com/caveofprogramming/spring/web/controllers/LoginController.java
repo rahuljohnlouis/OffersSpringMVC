@@ -42,6 +42,12 @@ public class LoginController {
 		return "denied";
 	}
 	
+	@RequestMapping("/messages")
+	public String showMessages() {
+		System.out.println("Inside denied");
+		return "messages";
+	}
+	
 	
 	@RequestMapping("/loggedout")
 	public String showLoggedOUt() {

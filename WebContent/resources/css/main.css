@@ -105,3 +105,23 @@ td.contact {
 	vertical-align: top;
 	width: 40px;
 }
+
+.message {
+	
+	margin-bottom: 20px;
+	border-bottom: 1px dashed brown;
+}
+span.subject {
+	font-size:large;
+	color: brown;
+}
+
+span.messageBody {
+	display: block;
+	font-style:italic;
+}
+
+span.name {
+	color:brown;
+	font-size:medium;
+}
