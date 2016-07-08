@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	
+<meta name="_csrf" content="${_csrf.token}"/> <!-- default header name is X-CSRF-TOKEN --> <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <div id="messages">
 
 
@@ -18,9 +18,28 @@ function showReply(i)
 	$("#form" +i).toggle();
 }
 
-function sendMessage(i)
+function success(data)
 {
-	alert("jbl");
+	alert("Success");	
+}
+
+function error(data)
+{
+	alert("Error");
+}
+
+function sendMessage(i,name,email)
+{
+	var text =$("#textbox"+i).val();
+	$.ajax({
+		"type": 'POST',
+		"url": '<c:url value="/sendmessage"/>',
+		"data": JSON.stringify({"text":text,"name":name,"email":email}),
+		"success":success,
+		"error":error,
+		contentType:"application/json",
+		dataType: "json"
+	});
 }
 function showMessages(data)
 {
@@ -63,13 +82,13 @@ function showMessages(data)
 		replyButton.setAttribute("class","replybutton");
 		replyButton.setAttribute("type","button");
 		replyButton.setAttribute("value","Reply");
-		replyButton.onclick= function(j) {
+		replyButton.onclick= function(j,name,email) {
 			return function()
 			{
-				sendMessage(j,name);
+				sendMessage(j,name,email);
 			}
 			
-		}(i);
+		}(i,message.name,message.email);
 		
 		replyForm.appendChild(textarea);	
 		replyForm.appendChild(replyButton);
@@ -99,7 +118,7 @@ function stopTimer() {
 	
 }
 
-
+$(function () { var token = $("meta[name='_csrf']").attr("content"); var header = $("meta[name='_csrf_header']").attr("content"); $(document).ajaxSend(function(e, xhr, options) { xhr.setRequestHeader(header, token); }); });
 function updatePage() {
 	$.getJSON("<c:url value="/getmessages"/>",showMessages);
 }
