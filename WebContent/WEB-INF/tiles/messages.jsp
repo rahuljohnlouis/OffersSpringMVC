@@ -20,12 +20,14 @@ function showReply(i)
 
 function success(data)
 {
-	alert("Success");	
+	$("#form" +data.target).toggle();
+	$("#alert" +data.target).text("Message sent.");
+	startTimer();
 }
 
 function error(data)
 {
-	alert("Error");
+	alert("Error sending message.");
 }
 
 function sendMessage(i,name,email)
@@ -34,7 +36,7 @@ function sendMessage(i,name,email)
 	$.ajax({
 		"type": 'POST',
 		"url": '<c:url value="/sendmessage"/>',
-		"data": JSON.stringify({"text":text,"name":name,"email":email}),
+		"data": JSON.stringify({"target":i,"text":text,"name":name,"email":email}),
 		"success":success,
 		"error":error,
 		contentType:"application/json",
@@ -70,6 +72,13 @@ function showMessages(data)
 		nameSpan.appendChild(link);
 		nameSpan.appendChild(document.createTextNode(")"));
 		
+		var alertSpan=document.createElement("span");
+		alertSpan.setAttribute("class","alert");
+		alertSpan.setAttribute("id","alert"+i);
+		//alertSpan.appendChild(document.createTextNode("Message Sent"));
+		
+		
+		
 		var replyForm=document.createElement("form");
 		replyForm.setAttribute("class","replyForm");
 		replyForm.setAttribute("id","form"+i);
@@ -96,6 +105,7 @@ function showMessages(data)
 		messageDiv.appendChild(subjectSpan);
 		messageDiv.appendChild(contentSpan);
 		messageDiv.appendChild(nameSpan);
+		messageDiv.appendChild(alertSpan);
 		messageDiv.appendChild(replyForm);
 		
 		
