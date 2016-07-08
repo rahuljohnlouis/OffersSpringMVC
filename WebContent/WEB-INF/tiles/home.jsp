@@ -20,6 +20,7 @@
 
 
 <script type="text/javascript">
+<!-- 
 function updateMessageLink(data)
 {
 	$("#numberMessages").text(data.number);
@@ -33,4 +34,5 @@ function updatePage() {
 	$.getJSON("<c:url value="/getmessages"/>",updateMessageLink);
 }
 $(document).ready(onLoad);
+ -->
 </script>

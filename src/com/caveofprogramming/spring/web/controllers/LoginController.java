@@ -44,7 +44,6 @@ public class LoginController {
 	
 	@RequestMapping("/messages")
 	public String showMessages() {
-		System.out.println("Inside denied");
 		return "messages";
 	}
 	

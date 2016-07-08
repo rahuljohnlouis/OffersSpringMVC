@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.caveofprogramming.spring.web.dao.FormValidationGroup;
 import com.caveofprogramming.spring.web.dao.Offer;
-import com.caveofprogramming.spring.web.dao.PersistanceValidationGroup;
 import com.caveofprogramming.spring.web.service.OffersService;
 
 @Controller

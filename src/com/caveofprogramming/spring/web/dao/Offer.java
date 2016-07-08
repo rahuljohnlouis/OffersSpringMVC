@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @Table(name="offers")
 public class Offer {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

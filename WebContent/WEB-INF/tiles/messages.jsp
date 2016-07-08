@@ -20,11 +20,11 @@ function showReply(i)
 
 function sendMessage(i)
 {
-	alert($("#textbox"+i).val());
+	alert("jbl");
 }
 function showMessages(data)
 {
-	$("div#messages").html('');
+	$("div#messages").html("");
 	for(var i=0;i<data.messages.length;i++)
 	{
 		var message=data.messages[i];
@@ -66,7 +66,7 @@ function showMessages(data)
 		replyButton.onclick= function(j) {
 			return function()
 			{
-				sendMessage(j);
+				sendMessage(j,name);
 			}
 			
 		}(i);
